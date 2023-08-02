@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import UserModel from "../model/user.model";
 
 export const getAllUsers = async (req: Request, res: Response) => {
-  
+  console.log(req.body)
+  res.status(250).send("Funcionando")
   try {
     const allUsers = await UserModel.find();
   } catch (error) {
@@ -29,7 +30,9 @@ export const createUser = async (req: Request, res: Response) => {
   }
   try {
     const newUser = await UserModel.create({name, email, password});
+    await newUser.save();
     res.status(201).send(newUser);
+
   } catch (error) {
     console.log(error)
     res.status(500).send(error)

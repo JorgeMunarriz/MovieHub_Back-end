@@ -11,5 +11,5 @@ type AppConfig = {
 }
 
 type MongoDBConfig = {
-    PORT: string
+    URI: string
 }

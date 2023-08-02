@@ -15,7 +15,7 @@ const CONFIG: Tconfig = {
             PORT: process.env.PORT || 3006
         },
         db:{ 
-           PORT: process.env.MONGO_DB_URI || 'mongodb://127.0.0.1:27017/express'
+           URI: process.env.MONGO_DB_URI || 'mongodb://127.0.0.1:27017/express'
         },
     },
     production:{
@@ -23,7 +23,7 @@ const CONFIG: Tconfig = {
             PORT: process.env.PORT || 3011
         },
         db:{ 
-           PORT: process.env.MONGO_DB_URI || 'mongodb://127.0.0.1:27017/express'
+           URI: process.env.MONGO_DB_URI || 'mongodb://127.0.0.1:27017/express'
         },
     }
 }

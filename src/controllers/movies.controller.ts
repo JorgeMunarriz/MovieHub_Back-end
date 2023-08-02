@@ -13,7 +13,7 @@ export const getAllMovies = async (req: Request, res: Response) => {
   res.status(200).send(" Get all users");
 };
 export const getMovieById = async (req: Request, res: Response) => {
-  const {userId: string} = req.params
+  const {userId} = req.params
   try {
     const user = await UserModel.findById({_id: userId});
   } catch (error) {
@@ -33,7 +33,7 @@ export const createMovie = async (req: Request, res: Response) => {
     const newMovie = await MoviesModel.create({name, year});
     res.status(201).send(newMovie);
 
-    await MoviesModel.
+    
   } catch (error) {
     console.log(error)
     res.status(500).send(error)
