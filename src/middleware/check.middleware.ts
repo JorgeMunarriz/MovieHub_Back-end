@@ -1,12 +1,13 @@
-import { Request, Response, NextFunction } from "express";
+import {NextFunction, Request, Response} from 'express';
 
+export const check = (req: Request, res: Response, next: NextFunction) => {
+    console.log('check middleware');
+    const {name} = req.body;
 
-export const check = (req : Request, res : Response, next : NextFunction)=>{
-    console.log('Check Middleware')
- const {name} = req.body;
- if (name.length < 4){
-    res.status(404).send({error: 'Name must be least 4 characters'});
-    return
-    };
-next()
- }
+    if (name.length < 4) {
+        res.status(400).send({error: 'Name must be at least 4 characters long'});
+        return;
+    }
+
+    next();
+}

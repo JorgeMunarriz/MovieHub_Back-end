@@ -2,23 +2,28 @@ import { Document, Schema, model } from "mongoose";
 
 interface IMoviesDocument extends Document {
   name: string;
+  score: number;
   year: number;
-  movies?: string[];
   createdAt: Date;
   undatedAt: Date;
 }
 
-const MoviesSchema = new Schema<IMoviesDocument>({
- name: {
-    type: String,
-    required: [true, "Name is required"],
- },
- year:{
-    type: Number,
-    required: [true, "year is required"],
- }
-}, {timestamps: true, versionKey: false});
-
+const MoviesSchema = new Schema<IMoviesDocument>(
+  {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
+    score:{ 
+      type: Number, 
+      required: [true, "Score is required"], 
+   },
+   year: {
+      type: Number,
+   }
+  },
+  { timestamps: true, versionKey: false }
+);
 
 const MoviesModel = model<IMoviesDocument>("Movies", MoviesSchema);
 

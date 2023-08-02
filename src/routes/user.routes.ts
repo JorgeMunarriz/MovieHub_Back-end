@@ -1,12 +1,14 @@
-import {Router, Request, Response} from 'express'
-import { createUser, deleteUser, getAllUsers, getUserById, updateUser } from '../controllers/user.controllers'
+import {Router} from "express";
+import {createUser, deleteUserByID, getAllUsers, getUserByID, updateUserName} from "../controllers/user.controller";
 
-const UserRouter = Router();
+const UserRouter = Router()
 
-UserRouter.get('/', getAllUsers)
-UserRouter.get('/:', getUserById)
-UserRouter.post('/', createUser)
-UserRouter.delete('/:userID', deleteUser)
-UserRouter.put('/:userID', updateUser);
+UserRouter
+    .post("/", createUser)
+    .get("/", getAllUsers)
+    .get("/:userID", getUserByID)
+    .put("/:userID", updateUserName)
+    .delete("/:userID", deleteUserByID)
 
-export default UserRouter;
+
+export default UserRouter
