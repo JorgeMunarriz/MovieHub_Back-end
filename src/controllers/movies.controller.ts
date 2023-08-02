@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import UserModel from "../model/user.model";
+import MoviesModel from "../model/movies.model";
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const getAllMovies = async (req: Request, res: Response) => {
   
   try {
     const allUsers = await UserModel.find();
@@ -11,8 +12,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
   }
   res.status(200).send(" Get all users");
 };
-export const getUserById = async (req: Request, res: Response) => {
-  const {userId} = req.params
+export const getMovieById = async (req: Request, res: Response) => {
+  const {userId: string} = req.params
   try {
     const user = await UserModel.findById({_id: userId});
   } catch (error) {
@@ -21,22 +22,25 @@ export const getUserById = async (req: Request, res: Response) => {
   }
   res.status(200).send(" Get all users");
 };
-export const createUser = async (req: Request, res: Response) => {
-  const {name, email, password} = await req.body;
-  if (!name || !email || !password) {
-    res.status(404).send({error: "Missing username or password"});
+export const createMovie = async (req: Request, res: Response) => {
+  const {name, year} = await req.body;
+  const {userId} = req.params
+  if (!name || year) {
+    res.status(404).send({error: "Missing name or year"});
     return;
   }
   try {
-    const newUser = await UserModel.create({name, email, password});
-    res.status(201).send(newUser);
+    const newMovie = await MoviesModel.create({name, year});
+    res.status(201).send(newMovie);
+
+    await MoviesModel.
   } catch (error) {
     console.log(error)
     res.status(500).send(error)
   }
   
 };
-export const updateUser = async (req: Request, res: Response) => {
+export const updateMovie = async (req: Request, res: Response) => {
   const {userId} = req.params
   const {name, email}= req.body
   try {
@@ -50,7 +54,7 @@ export const updateUser = async (req: Request, res: Response) => {
   }
   res.status(200).send(" Get all users");
 };
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteMovie = async (req: Request, res: Response) => {
   const {userId} = req.params
   const {name, email}= req.body
   try {
