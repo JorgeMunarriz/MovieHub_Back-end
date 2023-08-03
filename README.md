@@ -10,11 +10,14 @@ Welcome to the MovieHub project, an application to keep track of the movies you 
 
 MovieHub is an application that allows you to manage a list of movies. Each movie in the application has a name, a poster, a score, and a genre. You will be able to perform CRUD (Create, Read, Update, Delete) operations on these movies.
 
-The frontend of the application is built with React. In the user interface, you will be able to view all added movies in a list. Each movie will be displayed with its name, poster, score, and genre. There will be an option to add new movies through a modal or a new page, where you can enter the movie's name, upload a poster image, assign a score, and select a genre. You will also have the option to update the data of existing movies or remove them from the list.
+The frontend of the application is built with React + Vite + Typescript. 
+You can show it at https://github.com/JorgeMunarriz/MovieHub_Front-end
+
+In the user interface, you will be able to view all added movies in a list. Each movie will be displayed with its name, poster, score, and genre. There will be an option to add new movies through a modal or a new page, where you can enter the movie's name, upload a poster image, assign a score, and select a genre. You will also have the option to update the data of existing movies or remove them from the list.
+
+- The Backend of the application is built with Node + typescript + MongoDB + Prisma + PostgreSQL + Cloudinary. 
 
 Although the frontend of the application is important for user interaction, the main focus of this project is the backend. As you progress through the project, you will learn and apply different backend technologies and concepts, including Node.js, Express, MongoDB, Prisma, PostgreSQL, Auth0, and Cloudinary. You will learn how these technologies work together to support the functionalities of the application and provide a smooth user experience.
-
-This project is an excellent opportunity to learn and practice your backend development skills while building a functional and attractive movie management application. Good luck!
 
 `#react` `#express` `#vite` `#node` `#typescript` `#postgres` `#prisma` `#cloudinary` `#backend` `#assembler-institute-of-technology` `#master-in-software-engineering` `#jorgemunarrizdev.com` 
 
@@ -37,7 +40,9 @@ This project is an excellent opportunity to learn and practice your backend deve
 - Basic knowledge of Express middleware.
 - Familiarity with Cloudinary.
 - Basic knowledge of file handling in Node.js.
+- 
 ## Installation
+
 To get the MovieHub project up and running on your local machine, follow these steps:
 
 Clone the repository from GitHub:
