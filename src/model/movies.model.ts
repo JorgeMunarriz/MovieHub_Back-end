@@ -1,9 +1,10 @@
-import { Document, Schema, model } from "mongoose";
+import { Document,Types, Schema, model } from "mongoose";
 
 interface IMoviesDocument extends Document {
   name: string;
   score: number;
   year: number;
+  genre: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,6 +21,9 @@ const MoviesSchema = new Schema<IMoviesDocument>(
    },
    year: {
       type: Number,
+   },
+   genre: {
+    type: [{ type: Schema.Types.ObjectId, ref: "Genre"}]
    }
   },
   { timestamps: true, versionKey: false }
