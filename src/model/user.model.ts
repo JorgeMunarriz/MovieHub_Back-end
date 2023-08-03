@@ -1,11 +1,11 @@
-import { Document, model, Schema } from "mongoose";
+import { Document, model, Schema, Types } from "mongoose";
 import bcrypt from "bcrypt";
 
 interface IUserDocument extends Document {
   name: string;
   email: string;
   password: string;
-  movies?: Schema.Types.ObjectId;
+  movies?: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
