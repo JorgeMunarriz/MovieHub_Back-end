@@ -29,13 +29,52 @@ Clone the repository from GitHub:
 
 Install the project dependencies:
 
-`npm install`
+```bash
+npm install
+```
 or 
-`npm i`
+```bash
+npm i
+```
 or 
-`pnpm i `
+```bash
+pnpm install
+```
 or 
-`yarn install`
+```bash
+yarn install
+```
+## How to use
+
+```bash
+npm run test
+```
+
+test: This script is used to run automated tests. In this case, it seems that no specific tests have been specified, and instead, it displays an error message and exits the process with an exit code of 1. You can add your automated tests here if you have any.
+
+```bash
+npm run commit
+```
+commit: This script adds all changes in the current directory to the staging area of Git and makes a commit. You can use this command to quickly commit all the changes you made. For example, you would run npm run commit to stage and commit the changes.
+
+```bash
+npm run dev
+```
+dev: This script is for local development. It uses nodemon to watch the .ts files in the src folder and restarts the server whenever it detects changes. ts-node executes the index.ts file, which means your application runs in development mode with TypeScript. To run this script, simply type npm run dev in your terminal.
+
+```bash
+npm run build
+```
+
+build: This script is responsible for compiling your TypeScript code into JavaScript. It uses rimraf to delete the dist folder (if it exists) and then uses tsc (TypeScript Compiler) to compile the TypeScript files in the src folder and generate the dist folder with the compiled JavaScript files. You can execute this script using npm run build.
+
+```bash
+npm run start
+```
+
+start: This script first runs the npm run build command, which compiles the TypeScript files into JavaScript in the dist folder. Then, it executes the index.js file located in the dist folder using node. In short, this script starts your application in production mode. To run this script, simply type npm start in your terminal.
+
+Remember that to be able to run these scripts, you need to be in the directory of your project and have Node.js installed. Then, simply type the corresponding command in your terminal to execute each script according to your needs. For example, npm run dev for development mode or npm start for production mode.
 
 ## Dependencies
 
