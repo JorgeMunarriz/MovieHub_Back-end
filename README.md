@@ -7,6 +7,7 @@ Welcome to the MovieHub project, an application to keep track of the movies you 
 ![homepage_desktop.png](/src/assets/img/desktop_image.png)
 
 ## Project Description
+
 MovieHub is an application that allows you to manage a list of movies. Each movie in the application has a name, a poster, a score, and a genre. You will be able to perform CRUD (Create, Read, Update, Delete) operations on these movies.
 
 The frontend of the application is built with React. In the user interface, you will be able to view all added movies in a list. Each movie will be displayed with its name, poster, score, and genre. There will be an option to add new movies through a modal or a new page, where you can enter the movie's name, upload a poster image, assign a score, and select a genre. You will also have the option to update the data of existing movies or remove them from the list.
@@ -15,8 +16,27 @@ Although the frontend of the application is important for user interaction, the 
 
 This project is an excellent opportunity to learn and practice your backend development skills while building a functional and attractive movie management application. Good luck!
 
-`#react` `#express` `#typescript` `#postgres` `#prisma` `#cloudinary` `#backend` `#assembler-institute-of-technology` `#master-in-software-engineering` `#jorgemunarrizdev.com`
+`#react` `#express` `#vite` `#node` `#typescript` `#postgres` `#prisma` `#cloudinary` `#backend` `#assembler-institute-of-technology` `#master-in-software-engineering` `#jorgemunarrizdev.com` 
 
+## Requirements
+
+- Install Node.js and npm on your local machine, and Code Editor like Visual Code .
+1. **NODE**: https://nodejs.org/es/download
+2. **NPM**:  https://www.npmjs.com/package/npm
+3. **Visual Code**: https://code.visualstudio.com/download
+
+- Have basic knowledge of JavaScript and TypeScript.
+- Familiarity with the MVC design pattern.
+- Basic knowledge of MongoDB and Mongoose.
+- Familiarity with Prisma.
+- Basic knowledge of MongoDB.
+- Familiarity with Prisma.
+- Basic knowledge of PostgreSQL and MongoDB.
+- Understanding of one-to-many and many-to-many relationships.
+- Familiarity with Auth0.
+- Basic knowledge of Express middleware.
+- Familiarity with Cloudinary.
+- Basic knowledge of file handling in Node.js.
 ## Installation
 To get the MovieHub project up and running on your local machine, follow these steps:
 
@@ -84,22 +104,27 @@ Remember that to be able to run these scripts, you need to be in the directory o
 
 The MovieHub project utilizes several libraries and technologies. Below are the main dependencies used in the project:
 
-Frontend Dependencies:
+
+### Frontend Dependencies:
 
 React: A popular JavaScript library for building user interfaces.
 Vite: Vite is a development environment for modern web applications based on JavaScript and TypeScript. It stands out for its speed and efficiency in the process of development and construction of frontend projects.
 Auth0 React SDK: An SDK that integrates Auth0 authentication into the React application.
 React Router: A library for handling routing within the React application.
-Backend Dependencies:
+
+
+### Backend Dependencies:
 
 Express: A fast and minimal web application framework for Node.js.
 Prisma: An ORM used for database access and migration.
 Auth0 Express Middleware: Middleware for Express to handle Auth0 authentication.
 Cloudinary: A cloud-based service for storing and transforming media content.
-Database:
+
+
+#### Database:
 
 MongoDB: A NoSQL database used to store movie data (prior to PostgreSQL migration).
-Dev Dependencies:
+#### Dev Dependencies:
 
 TypeScript: A typed superset of JavaScript used to add type safety.
 Nodemon: A utility that automatically restarts the Node.js server on file changes (for development).
@@ -111,26 +136,27 @@ Prettier: A code formatter used to enforce code style consistency.
 
 You can find me on LinkedIn, Facebook, and view my other projects on GitHub using the following links:
 
-LinkedIn: https://www.linkedin.com/in/jorgemunarrizguti%C3%A9rrezsolana/
-Facebook: https://www.facebook.com/profile.php?id=100010085599620
-GitHub: https://github.com/JorgeMunarriz
+1. **LinkedIn**: https://www.linkedin.com/in/jorgemunarrizguti%C3%A9rrezsolana/
+2. **Facebook**: https://www.facebook.com/profile.php?id=100010085599620
+3. **GitHub**: https://github.com/JorgeMunarriz
 
 
 ## Support Resources
 
 
-Prisma
-MongoDB
-PostgreSQL
-Cloudinary
-express-fileupload
-fs-extra
-Node.js
-Express.js
-TypeScript
-Auth0
-express-oauth2-jwt-bearer
-Auth0 React SDK
+- [Prisma](https://www.prisma.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Cloudinary](https://cloudinary.com/)
+- [express-fileupload](https://www.npmjs.com/package/express-fileupload)
+- [fs-extra](https://www.npmjs.com/package/fs-extra)
+- [Node.js](https://nodejs.org/)
+- [Express.js](https://expressjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Auth0](https://auth0.com/)
+- [express-oauth2-jwt-bearer](https://www.npmjs.com/package/express-oauth2-jwt-bearer)
+- [Auth0 React SDK](https://auth0.com/docs/quickstart/spa/react)
 
 
-Remember, the goal of this project is to learn and practice. Don't hesitate to ask for help if you get stuck, and make sure to understand each step before moving on to the next one. Good luck!
+Remember, the goal of this project is to learn and practice. Don't hesitate to ask for help if you get stuck.
+Good luck!
