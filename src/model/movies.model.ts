@@ -5,7 +5,7 @@ interface IMoviesDocument extends Document {
   score: number;
   year: number;
   createdAt: Date;
-  undatedAt: Date;
+  updatedAt: Date;
 }
 
 const MoviesSchema = new Schema<IMoviesDocument>(
