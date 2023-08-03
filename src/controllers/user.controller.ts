@@ -68,7 +68,6 @@ export const deleteUserByID = async (req: Request, res: Response) => {
     try {
 
         await UserModel.findByIdAndDelete({_id: userID})
-
         res.status(204).json();
     } catch (error) {
         res.status(500).json(error);
