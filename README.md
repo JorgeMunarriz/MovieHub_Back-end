@@ -40,7 +40,8 @@ Although the frontend of the application is important for user interaction, the 
 - Basic knowledge of Express middleware.
 - Familiarity with Cloudinary.
 - Basic knowledge of file handling in Node.js.
-- 
+
+
 ## Installation
 
 To get the MovieHub project up and running on your local machine, follow these steps:
