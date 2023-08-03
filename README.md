@@ -23,9 +23,13 @@ To get the MovieHub project up and running on your local machine, follow these s
 Clone the repository from GitHub:
 
 
-`git clone <URL_TO_YOUR_GITHUB_REPO>`
+```bash
+git clone https://github.com/JorgeMunarriz/MovieHub_Back-end.git
+```
 
-`cd MovieHub_Back-End`
+```bash
+cd MovieHub_Back-End
+```
 
 Install the project dependencies:
 
