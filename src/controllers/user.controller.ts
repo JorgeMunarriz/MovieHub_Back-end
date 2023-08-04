@@ -26,9 +26,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-
-        const allUsers = await UserModel.find()
-
+        const allUsers = await UserModel.find().populate("movies")
         res.status(201).json(allUsers);
 
     } catch (error) {
@@ -39,10 +37,9 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getUserByID = async (req: Request, res: Response) => {
     const {userID} = req.params;
     try {
+        const userById = await UserModel.findById(userID).populate("movies").populate("movies.genres.genre")
+        res.status(201).json(userById);
 
-        const user = await UserModel.findById({_id: userID}).populate("movies")
-
-        res.status(201).json(user);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -53,11 +50,11 @@ export const updateUserName = async (req: Request, res: Response) => {
     const {name, email} = req.body;
     try {
 
-        const user = await UserModel.findByIdAndUpdate({_id: userID}, {
-            $set: {name: name, email: email}
-        }, {new: true})
+        const user = await UserModel.findByIdAndUpdate(userID, 
+        { $set: {name: name, email: email} }, {new: true})
 
         res.status(201).json(user);
+
     } catch (error) {
         res.status(500).json(error);
     }
@@ -67,7 +64,7 @@ export const deleteUserByID = async (req: Request, res: Response) => {
     const {userID} = req.params;
     try {
 
-        await UserModel.findByIdAndDelete({_id: userID})
+        await UserModel.findByIdAndDelete(userID)
         res.status(204).json();
     } catch (error) {
         res.status(500).json(error);

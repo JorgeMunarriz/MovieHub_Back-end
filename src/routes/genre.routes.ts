@@ -1,14 +1,13 @@
 import {Router} from 'express'
-import { check } from '../middleware/check.middleware';
 import { createGenre, deleteGenreByID, getAllGenre, getGenreByID, updateGenreByID } from '../controllers/genre.controller';
 
-const GenreRouter = Router();
+const GenresRouter = Router();
 
-GenreRouter
-    .get('/:genreID', getGenreByID)
+GenresRouter
     .get('/', getAllGenre)
-    .post('/', check, createGenre)
+    .post('/', createGenre)
+    .get('/:genreID', getGenreByID)
     .delete('/:genreID', deleteGenreByID)
     .put('/:genreID', updateGenreByID);
 
-export default GenreRouter;
+export default GenresRouter;

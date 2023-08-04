@@ -1,10 +1,11 @@
 import { Document,Types, Schema, model } from "mongoose";
+import { IGenre } from "./genres.model";
 
 interface IMoviesDocument extends Document {
   name: string;
   score: number;
   year: number;
-  genre: Types.ObjectId[];
+  genres: Types.Array<IGenre>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -22,9 +23,8 @@ const MoviesSchema = new Schema<IMoviesDocument>(
    year: {
       type: Number,
    },
-   genre: {
-    type: [{ type: Schema.Types.ObjectId, ref: "Genre"}]
-   }
+   genres: [{ type: Schema.Types.Array, ref: "Genres"}]
+   
   },
   { timestamps: true, versionKey: false }
 );

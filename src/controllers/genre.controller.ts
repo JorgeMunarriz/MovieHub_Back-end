@@ -1,58 +1,60 @@
 import { Request, Response } from "express";
-import MoviesModel from "../model/movies.model";
-import GenreModel from "../model/genre.model";
+import GenresModel from "../model/genres.model";
 
-export const createGenre = async (req: Request, res: Response) => {
-  const {  name } = req.body;
+export const createGenre = async (req: Request, res: Response): Promise<Response> => {
+  const {  genre } = req.body;
   try {
-    const newGenre = await GenreModel.create({ name });
-    res.status(201).send(newGenre);
+    const newGenre = await GenresModel.create({genre: genre});
+    return res.status(201).send(newGenre);
   } catch (error) {
-    res.status(500).send(error);
+   return  res.status(500).send(error);
   }
 };
 
-export const getGenreByID = async (req: Request, res: Response) => {
+export const getGenreByID = async (req: Request, res: Response): Promise<Response> => {
   const { genreID } = req.params;
   try {
-    const genre = await GenreModel.findById({ _id: genreID });
-    res.status(200).send(genre);
+    const genre = await GenresModel.findById(genreID);
+   return res.status(200).send(genre);
   } catch (error) {
-    res.status(500).send(error);
+   return res.status(500).send(error);
   }
 };
-export const getAllGenre = async (req: Request, res: Response) => {
+export const getAllGenre = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const genre = await GenreModel.find();
-    res.status(200).send(genre);
+    const genre = await GenresModel.find();
+   return res.status(200).send(genre);
   } catch (error) {
-    res.status(500).send(error);
+   return res.status(500).send(error);
   }
 };
 
-export const updateGenreByID = async (req: Request, res: Response) => {
+export const updateGenreByID = async (req: Request, res: Response): Promise<Response> => {
   const { genreID } = req.params;
-  const { name } = req.body;
+  const { genre } = req.body;
   try {
-    const genre = await GenreModel.findByIdAndUpdate(
+    const genreFound = await GenresModel.findByIdAndUpdate(
       genreID,
       {
-        $set: { name },
+        $set: { genre },
       },
       {
         new: true,
       }
     );
-    res.status(200).send(genre);
-  } catch (error) {}
+   return res.status(200).send(genreFound);
+  } catch (error) {
+   return res.status(500).send(error);
+
+  }
 };
 
-export const deleteGenreByID = async (req: Request, res: Response) => {
+export const deleteGenreByID = async (req: Request, res: Response): Promise<Response> => {
   const { genreID } = req.params;
   try {
-    const deleteGenre = await GenreModel.findByIdAndDelete({ _id: genreID });
-    res.status(200).send(deleteGenre);
+    const deleteGenre = await GenresModel.findByIdAndDelete(genreID);
+   return res.status(200).send(deleteGenre);
   } catch (error) {
-    res.status(500).send(error);
+   return res.status(500).send(error);
   }
 };

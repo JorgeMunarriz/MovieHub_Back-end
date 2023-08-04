@@ -1,82 +1,78 @@
 import { Request, Response } from "express";
-import MoviesModel from "../model/movies.model";
-import UserModel from "../model/user.model";
+import { GenresModel, MoviesModel, UserModel } from "../model";
 
-export const createMovie = async (req: Request, res: Response) => {
-  const { name, year, score } = req.body;
+export const createMovie = async (req: Request, res: Response): Promise<Response> => {
+  const { name, year, score, genres } = req.body;
   const { userID } = req.params;
-
-  console.log(userID);
   try {
-    const newMovie = await MoviesModel.create({
-      name,
-      year,
-      score,
-    });
+    const foundGenres = await GenresModel.find({ genre: { $in: genres.map((genres: { genre: any; }) => genres.genre)}})
+    // Extract the genre ids from the found genres
+    const genreNames = foundGenres.map((genre) => genre._id);
+    
+    const newMovie = await MoviesModel.create({ name, year, score, genres: genreNames });
 
     await UserModel.findByIdAndUpdate(
-      { _id: userID },
+       userID,
       {
-        $push: { movies: newMovie._id },
+        $push: { movies:{_id: newMovie._id}}
       }
     );
 
-    res.status(201).send(newMovie);
+   return res.status(201).send(newMovie);
   } catch (error) {
-    res.status(500).send(error);
+    return res.status(500).send(error);
   }
 };
-export const getMovieByID = async (req: Request, res: Response) => {
-  const { userID } = req.params;
+export const getMovieByID = async (req: Request, res: Response): Promise<Response> => {
+  const { movieID } = req.params;
   try {
-    const movie = await UserModel.findById({ _id: userID });
-    res.status(200).send(movie);
+    const movie = await MoviesModel.findById(movieID).populate("genres");
+    return res.status(200).send(movie);
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    return res.status(500).send(error);
   }
-  res.status(200).send(" Get all users");
 };
 
-export const getAllMovies = async (req: Request, res: Response) => {
+export const getAllMovies = async (req: Request, res: Response): Promise<Response> => {
   
   try {
     const movies = await MoviesModel.find({})
-    res.status(200).send(movies);
+    return res.status(200).send(movies);
   } catch (error) {
-    
+    return res.status(500).send(error);
   }
 };
 
-export const updateMovieByID = async (req: Request, res: Response) => {
+export const updateMovieByID = async (req: Request, res: Response): Promise<Response> => {
   const { movieID } = req.params;
   const { name, score, year } = req.body;
   try {
     const movie = await UserModel.findByIdAndUpdate(
-      { _id: movieID },
+      movieID,
       {
         $set: { name, score, year },
       },
       { new: true }
     );
-    res.status(200).send(movie);
+    return res.status(200).send(movie);
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    return res.status(500).send(error);
   }
 };
-export const deleteMovieByID = async (req: Request, res: Response) => {
+export const deleteMovieByID = async (req: Request, res: Response): Promise<Response> => {
   const { movieID } = req.params;
   const { name, score, year } = req.body;
   if (!name || !score || !year) {
-    res.status(404).send({ msg: "Movie not found" });
-    return;
+    return res.status(404).send({ msg: "Movie not found" });
+    
   }
   try {
-    await UserModel.findByIdAndDelete({ _id: movieID });
-    res.status(200).send("Deleted movie by ID");
+    await UserModel.findByIdAndDelete(movieID);
+    return res.status(200).send("Deleted movie by ID");
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    return res.status(500).send(error);
   }
 };

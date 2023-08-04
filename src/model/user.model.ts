@@ -27,6 +27,7 @@ const UserSchema = new Schema<IUserDocument>(
     },
     movies: {
       type: [{ type: Schema.Types.ObjectId, ref: "Movies" }],
+      genres: [{ type: Schema.Types.ObjectId, ref: "Genres" }]
     },
   },
   { timestamps: true, versionKey: false }
