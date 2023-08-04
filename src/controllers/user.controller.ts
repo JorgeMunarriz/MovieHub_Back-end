@@ -26,19 +26,29 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const allUsers = await UserModel.find().populate("movies")
-        res.status(201).json(allUsers);
+        const allUsers = await UserModel.find().populate({
+            path: "movies",
+            populate: {
+                path: "genres",
+                select: "_id genre",
+            },
+        });
+
+
+        res.status(200).json(allUsers);
 
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).send(error);
     }
 }
 
 export const getUserByID = async (req: Request, res: Response) => {
     const {userID} = req.params;
     try {
-        const userById = await UserModel.findById(userID).populate("movies").populate("movies.genres.genre")
-        res.status(201).json(userById);
+        const userById = await UserModel.findById(userID).populate("movies")
+
+
+        res.status(200).json(userById);
 
     } catch (error) {
         res.status(500).json(error);
@@ -53,7 +63,7 @@ export const updateUserName = async (req: Request, res: Response) => {
         const user = await UserModel.findByIdAndUpdate(userID, 
         { $set: {name: name, email: email} }, {new: true})
 
-        res.status(201).json(user);
+        res.status(200).json(user);
 
     } catch (error) {
         res.status(500).json(error);
@@ -65,7 +75,17 @@ export const deleteUserByID = async (req: Request, res: Response) => {
     try {
 
         await UserModel.findByIdAndDelete(userID)
-        res.status(204).json();
+        res.status(200).json();
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+export const updateAllUsers = async (req: Request, res: Response) => {
+    try {
+        const allUsers = await UserModel.findOneAndUpdate().populate("movies").populate("movies.genres.genre")
+        res.status(200).json(allUsers);
+
     } catch (error) {
         res.status(500).json(error);
     }

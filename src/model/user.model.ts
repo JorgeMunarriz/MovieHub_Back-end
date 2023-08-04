@@ -1,14 +1,16 @@
 import { Document, model, Schema, Types } from "mongoose";
 import bcrypt from "bcrypt";
+import { IGenre } from './genres.model';
 
 interface IUserDocument extends Document {
   name: string;
   email: string;
   password: string;
-  movies?: Types.ObjectId[];
+  movies?: Types.Array<Types.ObjectId>;
   createdAt: Date;
   updatedAt: Date;
 }
+
 
 const UserSchema = new Schema<IUserDocument>(
   {
@@ -25,10 +27,8 @@ const UserSchema = new Schema<IUserDocument>(
       type: String,
       required: [true, "Password is required "],
     },
-    movies: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Movies" }],
-      genres: [{ type: Schema.Types.ObjectId, ref: "Genres" }]
-    },
+    movies: [{ type: Schema.Types.ObjectId, ref: "Movies" }],
+
   },
   { timestamps: true, versionKey: false }
 );

@@ -4,8 +4,8 @@ import { Document,  model, Schema } from "mongoose";
 export interface IGenre extends Document{
    
     genre: string;
-    createAt: Date;
-    updateAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 
 }
 

@@ -5,7 +5,7 @@ interface IMoviesDocument extends Document {
   name: string;
   score: number;
   year: number;
-  genres: Types.Array<IGenre>;
+  genres: Array<IGenre["_id"]>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -23,7 +23,7 @@ const MoviesSchema = new Schema<IMoviesDocument>(
    year: {
       type: Number,
    },
-   genres: [{ type: Schema.Types.Array, ref: "Genres"}]
+   genres: [{ type: Schema.Types.ObjectId, ref: "Genres"}]
    
   },
   { timestamps: true, versionKey: false }
