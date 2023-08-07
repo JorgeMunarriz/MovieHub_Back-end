@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
-import UserModel from "../model/user.model";
+import prisma from '../db/clientPrisma';
+import { UserModel } from '../model';
 
 export const createUser = async (req: Request, res: Response) => {
     const {name, email, password} = req.body;
@@ -11,28 +12,26 @@ export const createUser = async (req: Request, res: Response) => {
             return;
         }
 
-        const newUser = await UserModel.create({
-            name,
-            email,
-            password
+        const newUser = await prisma.user.create({
+            data: {name, email, password}
         })
 
         res.status(201).json(newUser);
 
     } catch (error) {
+        console.log(error)
         res.status(500).json(error);
     }
 }
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const allUsers = await UserModel.find().populate({
-            path: "movies",
-            populate: {
-                path: "genres",
-                select: "_id genre",
-            },
-        });
+        const allUsers = await prisma.user.findMany()
+        // path: "movies",
+        //     populate: {
+        //         path: "genres",
+        //         select: "_id genre",
+        //     },
 
 
         res.status(200).json(allUsers);
@@ -60,7 +59,7 @@ export const updateUserName = async (req: Request, res: Response) => {
     const {name, email} = req.body;
     try {
 
-        const user = await UserModel.findByIdAndUpdate(userID, 
+        const user = await UserModel.findByIdAndUpdate(userID,
         { $set: {name: name, email: email} }, {new: true})
 
         res.status(200).json(user);
