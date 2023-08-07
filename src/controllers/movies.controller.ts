@@ -44,10 +44,18 @@ export const getMovieByID = async (req: Request, res: Response): Promise<Respons
 };
 
 export const getAllMovies = async (req: Request, res: Response): Promise<Response> => {
-  
+  const {name, score, year, genre} = req.body
   try {
-    const movies = await MoviesModel.find({})
-    return res.status(200).send(movies);
+    const movie = await MoviesModel.find().populate("genres")
+    if (!movie){
+      return res.status(404).send({msg: "Movie not found"});
+    }
+    // //Fetch the genres using genreIds
+    // const genreIds = movie.genres
+    // const genres = await GenresModel.find({_id: { $in: genreIds }}, {_id: 1, genre: 1  })
+    // movie.genre = genres
+
+    return res.status(200).send(movie);
   } catch (error) {
     return res.status(500).send(error);
   }

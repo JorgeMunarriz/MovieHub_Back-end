@@ -45,7 +45,13 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getUserByID = async (req: Request, res: Response) => {
     const {userID} = req.params;
     try {
-        const userById = await UserModel.findById(userID).populate("movies")
+        const userById = await UserModel.findById(userID).populate({
+            path: "movies",
+            populate: {
+                path: "genres",
+                select: "_id genre",
+            },
+        })
 
 
         res.status(200).json(userById);
@@ -55,7 +61,7 @@ export const getUserByID = async (req: Request, res: Response) => {
     }
 }
 
-export const updateUserName = async (req: Request, res: Response) => {
+export const updateUserById = async (req: Request, res: Response) => {
     const {userID} = req.params;
     const {name, email} = req.body;
     try {
